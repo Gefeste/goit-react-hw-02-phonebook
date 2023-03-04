@@ -27,6 +27,11 @@ export class App extends Component {
     const name = event.currentTarget.elements.name.value;
     const number = event.currentTarget.elements.number.value;
     const normalizedName = name.toLowerCase();
+    const contact = {
+      id: nanoid(),
+      name: name,
+      number: number,
+    };
 
     if (
       this.state.contacts.find(
@@ -35,16 +40,10 @@ export class App extends Component {
     ) {
       return alert(`${name} is already in contacts!`);
     }
-
-    this.state.contacts.push({
-      id: nanoid(),
-      name: name,
-      number: number,
-    });
-
     this.setState(({ contacts }) => ({
-      contacts: [...contacts],
+      contacts: [...contacts, contact],
     }));
+
     event.currentTarget.reset();
   };
 
